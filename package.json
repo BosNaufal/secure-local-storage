@@ -1,0 +1,28 @@
+{
+  "name": "secure-local-storage",
+  "version": "1.0.0",
+  "description": "Javascript Library to make a secure local storage with encryption",
+  "main": "secure-local-storage.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BosNaufal/secure-local-storage.git"
+  },
+  "keywords": [
+    "localStorage",
+    "javascript",
+    "library",
+    "secure"
+  ],
+  "author": "Naufal Rabbani <bosnaufalemail@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BosNaufal/secure-local-storage/issues"
+  },
+  "homepage": "https://github.com/BosNaufal/secure-local-storage#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-insert": "^0.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3"
+  }
+}
