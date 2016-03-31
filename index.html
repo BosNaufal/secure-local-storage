@@ -8,13 +8,9 @@
   <h1>SECURE LOCAL STORAGE DEMO</h1>
   <p>Check Your Console, And try to find a security hole</p>
 
-  <script src="secure-local-storage.min.js"></script>
+  <script src="build/secure-local-storage.js"></script>
   <script>
-    secureStorage.setPassword('RahasiaPribadi');
-    secureStorage.set('username','BosNaufal');
-    var username = secureStorage.get('username');
-    console.log(username);
-    alert(username);
+  let a = new SecureStorage('AES', 'pas');
   </script>
 </body>
 </html>
