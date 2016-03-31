@@ -13,46 +13,65 @@ So, I decided to make Secure Local Storage to encrypt Local Storage data and con
 
 
 ## Install
-Include the [secure-local-storage.js](./secure-local-storage.js) to your HTML or import it to your module (es6/node), Then it's ready to run.
+Include the [secure-local-storage.js](./build/secure-local-storage.min.js) to your HTML Then it's ready to run.
 
-## Usage
+## Example
 ```javascript
 
-// Set Your password ( Only Once )
-secureStorage.setPassword('myPass');
+// Create a secure storage
+var storage = new SecureStorage('password', 'encryption-method');
+
+// You can change your password later
+storage.password('BaR');
+// also encryption method
+storage.method('DES');
+
+// You can also in this way
+storage.password('BaR').method('DES');
 
 // Set some value
-secureStorage.set('username','BosNaufal');
-// or you can use this way
-secureStorage.set({ username: 'BosNaufal' });
+storage.set('username','BosNaufal');
+// and you can set an object or array
+storage.set('user', { name: 'Ali', age: 17 });
+// or this way
+storage.set({ username: 'BosNaufal' });
+
+// You can set values continual
+storage.set('username', 'BosNaufal').set('user', { name: 'Ali', age: 17 });
 
 // Get your local storage value
-secureStorage.get('username'); // Return BosNaufal
-
+storage.get('username'); // Return BosNaufal
+storage.get('user'); // Return { name: 'Ali', age: 17 }
 
 /**
-If you have a wrong password you will get undefined
+If you have a wrong password you will get an empty string
 **/
 
 // Set Wrong Password
-secureStorage.setPassword('wrongPass');
+secureStorage.password('wrongPass');
 
 // Get your local storage value with wrong password
-secureStorage.get('username'); // Return undefined
+secureStorage.get('username'); // Return ""
 
 
 
 
 // set to your correct password
-secureStorage.setPassword('myPass');
+secureStorage.password('BaR');
 
 // get it again
 secureStorage.get('username'); // Return BosNaufal
 ```
 
+## Usage
+
+```javascript
+new SecureStorage(password, method)
+```
+
 ## API
 
-#### setPassword(pass)
+#### password(pass)
 Set a new Password. You only need to set it once. Don't worry, the Secure Local Storage will keep your password and will not share it.
 
 #### set( data )
@@ -66,7 +85,7 @@ secureStorage.set({
   id: '4',
   username: 'BosNaufal',
   role: 'user',
-});
+})
 ```
 
 #### get( index )
@@ -78,8 +97,40 @@ secureStorage.get('username'); // return 'BosNaufal'
 secureStorage.get('role'); // return 'user'
 ```
 
+#### method( name )
+Set a new encryption method.
+Available methods:
+* AES
+* DES
+* TripleDES
+* RC4
+* RC4Drop
+* Rabbit
+* RabbitLegacy
+
+```javascript
+// Set method
+secureStorage.method('AES');
+```
 
 ## Hopefully it can be useful~
+
+## Contributing
+
+Feel free to fork, and make any change.
+
+For build your to code, first install devDependencies then build with gulp:
+
+```shell
+npm i
+gulp # Remember, gulp is installed before
+```
+
+For install gulp:
+
+```
+[sudo] npm i -g gulp-cli
+```
 
 ## Let's talk about some projects
 Just Contact Me At:
