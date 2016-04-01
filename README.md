@@ -1,7 +1,7 @@
 # Secure Local Storage
 Javascript Library to make secure local storage with encryption. Based on [secure-local-storage.js](https://github.com/BosNaufal/secure-string-js).
 
-[DEMO](https://rawgit.com/BosNaufal/secure-local-storage/master/index.html)
+[DEMO](https://rawgit.com/BosNaufal/secure-local-storage/dev/index.html)
 
 
 Local storage is the easiest way ( I Think ) to make a "session like" in the Single Page Application (SPA), but there is another choice, using cookies. As a junior, I prefer using local storage than cookies. And sometime, I need to store important data in the Local Storage but it will make the data unsafe since it's easy to inject and change via developer tools.
