@@ -1,5 +1,5 @@
 # Secure Local Storage
-Javascript Library to make secure local storage with encryption. Based on [secure-local-storage.js](https://github.com/BosNaufal/secure-string-js).
+Javascript Library to make secure local storage with [crypto-js](https://www.npmjs.com/package/crypto-js) encryption.
 
 [DEMO](https://rawgit.com/BosNaufal/secure-local-storage/master/index.html)
 
@@ -19,15 +19,15 @@ Include the [secure-local-storage.js](./secure-local-storage.js) to your HTML or
 ```javascript
 
 // Set Your password ( Only Once )
-secureStorage.setPassword('myPass');
+var storage = new SecureStorage('Ali_Movahedi', 'AES');
 
 // Set some value
-secureStorage.set('username','BosNaufal');
+storage.set('username','BosNaufal');
 // or you can use this way
-secureStorage.set({ username: 'BosNaufal' });
+storage.set({ username: 'BosNaufal' });
 
 // Get your local storage value
-secureStorage.get('username'); // Return BosNaufal
+storage.get('username'); // Return BosNaufal
 
 
 /**
@@ -35,19 +35,19 @@ If you have a wrong password you will get undefined
 **/
 
 // Set Wrong Password
-secureStorage.setPassword('wrongPass');
+storage.setPassword('wrongPass');
 
 // Get your local storage value with wrong password
-secureStorage.get('username'); // Return undefined
+storage.get('username'); // Return undefined
 
 
 
 
 // set to your correct password
-secureStorage.setPassword('myPass');
+storage.setPassword('myPass');
 
 // get it again
-secureStorage.get('username'); // Return BosNaufal
+storage.get('username'); // Return BosNaufal
 ```
 
 ## API
