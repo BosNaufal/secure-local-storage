@@ -8,6 +8,18 @@ import crypto from 'crypto-js'
     password: null
   }
 
+  function encrypt(string) {
+    return crypto[intern.method]
+      .encrypt(string, intern.password)
+      .toString()
+  }
+
+  function decrypt(string) {
+    return crypto[intern.method]
+      .decrypt(string, intern.password)
+      .toString(crypto.enc.Utf8)
+  }
+
   class SecureStorage{
 
     constructor(password, method) {
@@ -15,29 +27,14 @@ import crypto from 'crypto-js'
       intern.password = password
     }
 
-
-    encrypt(string) {
-      return crypto[intern.method]
-        .encrypt(string, intern.password)
-        .toString()
-    }
-
-
-    decrypt(string) {
-      return crypto[intern.method]
-        .decrypt(string, intern.password)
-        .toString(crypto.enc.Utf8)
-    }
-
-
     set(key, value) {
       if (typeof key === 'object') {
         for (let i in key) {
-          localStorage[intern.prefix + i] = this.encrypt(JSON.stringify(key[i]))
+          localStorage[intern.prefix + i] = encrypt(JSON.stringify(key[i]))
         }
         return this
       } else {
-        localStorage[intern.prefix + key] = this.encrypt(JSON.stringify(value))
+        localStorage[intern.prefix + key] = encrypt(JSON.stringify(value))
         return this
       }
     }
@@ -79,7 +76,7 @@ import crypto from 'crypto-js'
       intern.method = method
       return this
     }
-    
+
   }
 
   module.exports = SecureStorage
