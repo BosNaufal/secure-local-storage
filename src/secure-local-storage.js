@@ -1,11 +1,10 @@
 import crypto from 'crypto-js'
-
 (() => {
 
   let intern = {
-    prefix: `@S@S@`,
     method: null,
-    password: null
+    password: null,
+    hasMade: false
   }
 
   function encrypt(string) {
@@ -25,33 +24,33 @@ import crypto from 'crypto-js'
     constructor(password, method) {
       intern.method = method
       intern.password = password
+      if(intern.hasMade) intern.method = false
+      intern.hasMade = true
     }
 
     set(key, value) {
       if (typeof key === 'object') {
         for (let i in key) {
-          localStorage[intern.prefix + i] = encrypt(JSON.stringify(key[i]))
+          localStorage[i] = encrypt(JSON.stringify(key[i]))
         }
         return this
       } else {
-        localStorage[intern.prefix + key] = encrypt(JSON.stringify(value))
+        localStorage[key] = encrypt(JSON.stringify(value))
         return this
       }
     }
 
 
     get(key) {
-      let regex = new RegExp('^' + intern.prefix)
-      if (localStorage[intern.prefix + key]) {
-        return JSON.parse(this.decrypt(localStorage[intern.prefix + key]))
+      if (localStorage[key]) {
+        return JSON.parse(decrypt(localStorage[key]))
       }
     }
 
 
     remove(key) {
-      let regex = new RegExp('^' + intern.prefix)
-      if (localStorage[intern.prefix + key]) {
-        localStorage.removeItem(intern.prefix + key)
+      if (localStorage[key]) {
+        localStorage.removeItem(key)
       }
     }
 

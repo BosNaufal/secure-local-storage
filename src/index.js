@@ -5,3 +5,4 @@ var storage = new SecureStorage('Ali_Movahedi', 'AES');
 storage.set({username: 'amovah', role: 'user' });
 
 global.storage = storage
+global.SecureStorage = SecureStorage
